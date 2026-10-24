@@ -1,0 +1,8 @@
+interface:
+  display_name: "Turning Teams"
+  short_description: "Persistent tmux teams with a shared message board"
+  default_prompt: "Use $turning-teams to execute a t() expression with persistent agents and a shared message board."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+policy:
+  allow_implicit_invocation: true
