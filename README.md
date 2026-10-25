@@ -49,7 +49,7 @@ Four agents, six turns in five steps. The browser and API testers investigate in
 - **Persistent tmux sessions:** runs each leaf in its own `tmux` window and resumes that leaf's CLI session on later rounds; if a harness cannot resume natively, continuation is labeled as reconstructed from committed records.
 - **Parallel lanes and git worktrees:** runs `p(...)` and `parallel(...)` members concurrently, keeps them blind to each other until the join, gives each parallel code writer its own git worktree, and leaves merging to a later integrator turn.
 - **Context discipline and shared board:** records canonical run events in `.t/runs/<run-id>/events.jsonl`, renders `board.md` and `state.md`, sends `path:line` pointers instead of pasted files, and sends resumed warm sessions only deltas since their last turn plus open requests.
-- **Round-robin review modes:** runs bounded **Debate** (multi-lens critique with counter-claims and missing evidence) or **Converge** (assumption-tested evidence relay into `working.md`) when review or diagnosis is requested.
+- **Round-robin review modes:** runs bounded **Debate** (multi-lens critique with counter-claims and missing evidence) or **Converge** (assumption-tested evidence relay into `working.md`) when review or ideation is requested.
 
 ## Install
 
@@ -69,7 +69,7 @@ For any other Agent Skills host, end the command with `bash -s ~/path/to/skills`
 
 The script checks the download's sha256 and backs up any earlier install before copying; [read it first](install.sh).
 
-Or install directly from this repository with the [Agent Skills CLI](https://skills.sh):
+Or install from this repository with the [`skills` CLI](https://skills.sh) (Node.js 22.20 or later), which takes the folder as it is on `main`:
 
 ```bash
 npx skills add turningdev/turning-teams -g
