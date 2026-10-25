@@ -28,6 +28,16 @@ t("Ship the change", 2,
 
 Four agents, eight turns.
 
+A parallel group, `p(...)`, runs its members at the same time. They do not see each other's work until the group joins at its `)`:
+
+```text
+t("Measure it",
+  p:replicate(opus-max:tester, argon-high:tester),
+  t:counter(2, opus-max:bull, argon-high:bear))
+```
+
+Four agents, six turns in five steps. The two testers share step 1, and the counter team takes the four steps after the join. `team(` is the long form of `t(`, and `parallel(` is the long form of `p(`.
+
 ## Install
 
 For Claude Code:
@@ -60,7 +70,7 @@ Running a team needs `tmux`, Bash on Linux, macOS or WSL, and the agent CLIs you
 ## Learn more
 
 - [turning.work](https://turning.work)
-- [The language](https://turning.work/language): grammar, counting, addresses, the message board and review modes
+- [The language](https://turning.work/language): grammar, counting, addresses, parallel groups and steps, the message board and review modes
 - [The skill](https://turning.work/skill): install steps, requirements and what the skill has an agent do
 - [SKILL.md](skills/turning-teams/SKILL.md): the skill itself
 
