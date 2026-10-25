@@ -1,7 +1,7 @@
 interface:
   display_name: "Turning Teams"
-  short_description: "Persistent tmux teams with a shared message board"
-  default_prompt: "Use $turning-teams to execute a t() expression with persistent agents and a shared message board."
+  short_description: "Multi-agent coding teams in tmux via t() and p()"
+  default_prompt: "Use $turning-teams to run a t() or p() multi-agent coding team in tmux with persistent sessions and a shared message board."
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
 policy:

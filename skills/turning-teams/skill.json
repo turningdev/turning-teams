@@ -1,9 +1,24 @@
 {
   "author": "jake",
   "created": "2026-09-07",
+  "description": "Coordinates multi-agent coding teams in tmux using Turning t() and p() schedules, isolated git worktrees, persistent agent sessions, and a shared message board.",
+  "homepage": "https://www.turning.work/skill",
+  "keywords": [
+    "agent-orchestration",
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "git-worktree",
+    "multi-agent",
+    "parallel-agents",
+    "tmux",
+    "turning"
+  ],
+  "license": "Apache-2.0",
+  "repository": "https://github.com/turningdev/turning-teams",
   "schema_version": 1,
   "status": "active",
   "target_policy": "all",
-  "updated": "2026-10-24",
-  "version": "0.4.0"
+  "updated": "2026-10-25",
+  "version": "0.4.1"
 }
