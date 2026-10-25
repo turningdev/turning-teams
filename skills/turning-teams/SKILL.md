@@ -1,6 +1,6 @@
 ---
 name: turning-teams
-description: Coordinates multi-agent coding teams in tmux using Turning t() and team() schedules, p() and parallel() lanes in isolated git worktrees, persistent agent sessions across Claude Code, Codex, and other Agent Skills CLIs, a shared message board, and round-robin Debate or Converge review. Use when asked to execute a t(), team(), p(), or parallel() expression, spawn or orchestrate agent teams, run coding agents in parallel, or run multi-model code review or debate. Ordinary single-agent tasks need no team ceremony.
+description: Coordinates multi-agent coding teams in tmux using Turning t() and team() schedules, p() and parallel() lanes with isolated git worktrees for parallel writers, persistent agent sessions across Claude Code, Codex, and other Agent Skills hosts, a shared message board, and round-robin Debate or Converge review. Use when asked to execute a t(), team(), p(), or parallel() expression, spawn or orchestrate agent teams, run coding agents in parallel, or run multi-model code review, debate, or ideation. Ordinary single-agent tasks need no team ceremony.
 license: Apache-2.0
 compatibility: Requires tmux, Bash on Linux, macOS, or WSL, and authenticated coding agent CLIs such as Claude Code or Codex.
 metadata:

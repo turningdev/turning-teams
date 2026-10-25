@@ -11,7 +11,7 @@
 
 # Turning Teams
 
-Turning is a small language for describing how a team of AI coding agents takes turns. A `t()` expression names a goal, sets a number of rounds, and lists the participants in order. The Turning Teams skill ([`SKILL.md`](skills/turning-teams/SKILL.md)) teaches Claude Code, OpenAI Codex, Cursor, OpenCode, Gemini CLI, or any other [Agent Skills](https://agentskills.io) host to coordinate that plan using persistent sessions and `tmux`.
+Turning is a small language for describing how a team of AI agents takes turns. A `t()` expression names a goal, sets a number of rounds, and lists the participants in order. The Turning Teams skill ([`SKILL.md`](skills/turning-teams/SKILL.md)) teaches Claude Code, OpenAI Codex, Cursor, OpenCode, Gemini CLI, or any other [Agent Skills](https://agentskills.io) host to run teams of AI coding agents using persistent sessions and `tmux`.
 
 ## The language
 
@@ -98,8 +98,8 @@ Running a team needs `tmux`, Bash on Linux, macOS, or WSL, and the agent CLIs yo
 ## Learn more
 
 - [turning.work](https://www.turning.work): overview and interactive team schedules
-- [The language](https://www.turning.work/language): `t()` and `p()` grammar, counting, addresses, parallel groups and steps, the message board, and review modes
-- [The skill](https://www.turning.work/skill): install steps, package contents, requirements, and what the skill has an agent do
+- [Turning language reference](https://www.turning.work/language): `t()` and `p()` grammar, counting, addresses, parallel groups and steps, the message board, and review modes
+- [Turning Teams skill page](https://www.turning.work/skill): install steps, package contents, requirements, and what the skill has an agent do
 - [SKILL.md](skills/turning-teams/SKILL.md): the complete skill instructions loaded by your agent
 - [Releases](https://github.com/turningdev/turning-teams/releases): versioned `turning-teams` zip archives and sha256 digests
 

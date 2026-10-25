@@ -1,7 +1,7 @@
 {
   "author": "jake",
   "created": "2026-09-07",
-  "description": "Coordinates multi-agent coding teams in tmux using Turning t() and p() schedules, isolated git worktrees, persistent agent sessions, and a shared message board.",
+  "description": "Coordinates multi-agent coding teams in tmux using Turning t() and p() schedules, isolated git worktrees for parallel writers, persistent agent sessions, and a shared message board.",
   "homepage": "https://www.turning.work/skill",
   "keywords": [
     "agent-orchestration",
