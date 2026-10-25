@@ -12,7 +12,7 @@
 Turning is a small language for describing how a team of AI agents takes turns. A `t()` expression names a goal, sets a number of rounds, and lists the participants in order. The Turning Teams skill teaches Claude Code, Codex or any other Agent Skills host to coordinate that plan using persistent sessions and tmux.
 
 ```text
-t("Improve the search page", 2, builder:implementer, critic:reviewer)
+t("Add a clear button to the search field", 2, builder:implementer, critic:reviewer)
 ```
 
 Two agents, four turns. The builder acts first, then the critic, and they repeat that order for a second round. Each agent returns to its own session, carrying its earlier context forward.
@@ -20,9 +20,10 @@ Two agents, four turns. The builder acts first, then the critic, and they repeat
 Teams nest, and their round counts multiply the turns within them:
 
 ```text
-t("Ship the change", 2,
+t("Retry failed webhook deliveries", 2,
   builder:implementer,
-  t:review("Check the change", critic:correctness, critic:operations),
+  t:review("Check retry limits and duplicate deliveries",
+    critic:correctness, critic:operations),
   builder:integrator)
 ```
 
@@ -31,12 +32,12 @@ Four agents, eight turns.
 A parallel group, `p(...)`, runs its members at the same time. They do not see each other's work until the group joins at its `)`:
 
 ```text
-t("Measure it",
-  p:replicate(opus-max:tester, argon-high:tester),
-  t:counter(2, opus-max:bull, argon-high:bear))
+t("Find why clearing search leaves stale results",
+  p:reproduce(opus-max:browser-tester, argon-high:api-tester),
+  t:diagnosis(2, opus-max:analyst, argon-high:skeptic))
 ```
 
-Four agents, six turns in five steps. The two testers share step 1, and the counter team takes the four steps after the join. `team(` is the long form of `t(`, and `parallel(` is the long form of `p(`.
+Four agents, six turns in five steps. The browser and API testers investigate independently in step 1, and the diagnosis team weighs their findings in the four steps after the join. `team(` is the long form of `t(`, and `parallel(` is the long form of `p(`.
 
 ## Install
 
