@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installs the Turning Teams skill, turning-teams 0.4.0 (Apache License 2.0).
+# Installs the Turning Teams skill, turning-teams 0.4.1 (Apache License 2.0).
 #
 #   curl -fsSL https://turning.work/install.sh | bash
 #   curl -fsSL https://turning.work/install.sh | bash -s codex
@@ -41,20 +41,20 @@ turning_teams_install() {
 
   work=$(mktemp -d)
   cd "$work"
-  curl -fsSLO https://turning.work/skills/turning-teams-0.4.0.zip
+  curl -fsSLO https://turning.work/skills/turning-teams-0.4.1.zip
 
   if command -v sha256sum >/dev/null 2>&1; then
-    sum=$(sha256sum turning-teams-0.4.0.zip)
+    sum=$(sha256sum turning-teams-0.4.1.zip)
   else
-    sum=$(shasum -a 256 turning-teams-0.4.0.zip)
+    sum=$(shasum -a 256 turning-teams-0.4.1.zip)
   fi
 
-  if [ "${sum%% *}" != "0699002570ce0384d80e53484f0577a792f077dae086f9aabf1acac94ed44311" ]; then
+  if [ "${sum%% *}" != "afeeeaaee1465321cbf1f2f8b633805996244ad8ce3599ef8e6eb08093fad49d" ]; then
     printf 'turning-teams: the download does not match its sha256; nothing was installed\n' >&2
     return 1
   fi
 
-  unzip -q turning-teams-0.4.0.zip
+  unzip -q turning-teams-0.4.1.zip
   TURN_SKILL_ROOT="$skill_root"
   mkdir -p "$TURN_SKILL_ROOT"
   if [ -e "$TURN_SKILL_ROOT/turning-teams" ] || [ -L "$TURN_SKILL_ROOT/turning-teams" ]; then
@@ -63,7 +63,7 @@ turning_teams_install() {
     printf 'Previous install saved in %s\n' "$TURN_SKILL_BACKUP/turning-teams"
   fi
   cp -R turning-teams "$TURN_SKILL_ROOT/turning-teams"
-  printf 'Installed turning-teams 0.4.0 in %s\n' "$TURN_SKILL_ROOT/turning-teams"
+  printf 'Installed turning-teams 0.4.1 in %s\n' "$TURN_SKILL_ROOT/turning-teams"
   printf 'Start a new session and run /turning-teams in Claude Code or $turning-teams in Codex.\n'
 }
 
