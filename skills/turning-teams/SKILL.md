@@ -1,7 +1,13 @@
 ---
 name: turning-teams
-description: Organizes persistent coding agents in tmux using Turning t() team trees, a common message board, and optional round-robin Debate or Converge review. Use for requests to spawn agent teams, coordinate teams, run a round robin, run agents in parallel, or execute a t() expression. Ordinary single-agent tasks need no team ceremony.
+description: Coordinates multi-agent coding teams in tmux using Turning t() and team() schedules, p() and parallel() lanes with isolated git worktrees for parallel writers, persistent agent sessions across Claude Code, Codex, and other Agent Skills hosts, a shared message board, and round-robin Debate or Converge review. Use when asked to execute a t(), team(), p(), or parallel() expression, spawn or orchestrate agent teams, run coding agents in parallel, or run multi-model code review, debate, or ideation. Ordinary single-agent tasks need no team ceremony.
 license: Apache-2.0
+compatibility: Requires tmux, Bash on Linux, macOS, or WSL, and authenticated coding agent CLIs such as Claude Code or Codex.
+metadata:
+  author: "JJH Digital"
+  homepage: "https://www.turning.work/skill"
+  repository: "https://github.com/turningdev/turning-teams"
+  version: "0.4.1"
 ---
 # Turning Teams
 
@@ -26,7 +32,7 @@ fi
 cp -R turning-teams "$TURN_SKILL_ROOT/turning-teams"
 ```
 
-The destination must not exist when copying. These steps preserve any previous install, including 0.1.0 or an empty directory, outside the harness's skill discovery roots. Review the backup before deleting it. Start a new harness session, confirm Turning Teams appears in its skill list, and invoke `/turning-teams` in Claude Code or `$turning-teams` in Codex. For a Codex version using the legacy location, select the fallback assignment before running the steps. If changing locations, move the old copy outside both discovery roots before installing; keep only one active copy. Other Agent Skills hosts can load the same folder using their documented install location. See the official [Claude Code](https://code.claude.com/docs/en/skills) and [Codex](https://developers.openai.com/codex/skills/) instructions.
+The destination must not exist when copying. These steps preserve any previous install, including 0.1.0 or an empty directory, outside the harness's skill discovery roots. Review the backup before deleting it. Start a new harness session, confirm Turning Teams appears in its skill list, and invoke `/turning-teams` in Claude Code or `$turning-teams` in Codex. For a Codex version using the legacy location, select the fallback assignment before running the steps. If changing locations, move the old copy outside both discovery roots before installing; keep only one active copy. Other [Agent Skills](https://agentskills.io) hosts can load the same folder from their documented skill directory (such as `~/.config/opencode/skills` for OpenCode, `~/.gemini/skills` for Gemini CLI, `~/.cursor/skills` for Cursor, or `~/.copilot/skills` for GitHub Copilot), or install directly from [turningdev/turning-teams](https://github.com/turningdev/turning-teams) with `npx skills add turningdev/turning-teams -g`. See the [Turning Teams skill page](https://www.turning.work/skill), the [Turning language reference](https://www.turning.work/language), and the official [Claude Code](https://code.claude.com/docs/en/skills) and [Codex](https://developers.openai.com/codex/skills/) instructions.
 
 This package contains coordination instructions, not a compiler or bundled driver. To execute teams, the coordinator needs shell and file access, `tmux`, Bash on Linux/macOS or WSL, and installed, authenticated agent CLIs for the selected models. No particular machine, fleet, private script, or provider is required. Installing the skill alone does not install these prerequisites or grant permission to launch workers.
 
@@ -58,7 +64,7 @@ A parallel group runs its members at the same time: `t("Measure it", p:replicate
 
 ## Prepare
 
-1. Read applicable project instructions. Preserve the user's goal, roster, order, model choices, permissions, and bounds. For an unspecified debate, propose a compact rotation of 2–5 distinct lenses and use three rounds; never override an explicit expression's count.
+1. Read applicable project instructions. Preserve the user's goal, roster, order, model choices, permissions, and bounds. For an unspecified debate, propose a compact rotation of 2-5 distinct lenses and use three rounds; never override an explicit expression's count.
 2. Check `tmux`, the execution shell, and each chosen harness's installed help, model availability, authentication, headless output, and session-resume behavior. Support any callable harness; discover its real flags. Probe cheaply, without assuming probes are free. Report missing prerequisites; never substitute role-playing for requested processes without saying so.
 3. Use Linux/macOS shell paths, or run the same coordinator inside WSL from PowerShell. Keep execution paths in one filesystem namespace. A Windows-only harness needs an explicit path/quoting adapter and verified resume support.
 4. Print the tree, stable leaf addresses, full numbered activation schedule with each turn's step and each group's joins, model mapping, workspace assignments, dispatch capacity, and stopping conditions before launching. Count `leaves(agent)=1`, `turns(agent)=1`, `leaves(team)=sum(leaves(children))`, `turns(team)=rounds*sum(turns(children))`, and the group and step rules in the Language section. Count any extra model synthesis turn explicitly; a join is not a turn. Check that cross-team dependencies have a producer and a consumer activation the producer comes before (inside a group, a higher turn number is not enough); surface impossible reply/integration edges before launch.
@@ -162,7 +168,7 @@ A member that resolves to a person, such as the user, is a human leaf. Its turn 
 
 Use ordinary task turns for execution; enable these modes when review or ideation is requested. Keep one persistent session per role and brief it as a cold or warm receiver (see Context discipline).
 
-**Debate (default review mode).** Use a fixed rotation and bounded rounds, at most 300 words per turn. Each role must build on a specific prior claim and argue from its own lens. Across its turns, require a likely-false premise, concrete counter-claim or deprioritization, missing data point, and concrete next action. Retain these in immutable turn records and render them in the ordered local thread; publish consequential findings to the common board. Flag missing research rather than inventing support. Close with the decision, strongest unresolved disagreement, and 1–3 owned next actions.
+**Debate (default review mode).** Use a fixed rotation and bounded rounds, at most 300 words per turn. Each role must build on a specific prior claim and argue from its own lens. Across its turns, require a likely-false premise, concrete counter-claim or deprioritization, missing data point, and concrete next action. Retain these in immutable turn records and render them in the ordered local thread; publish consequential findings to the common board. Flag missing research rather than inventing support. Close with the decision, strongest unresolved disagreement, and 1-3 owned next actions.
 
 **Converge (evidence relay).** Test the most load-bearing premise first. Assign read-only explorers distinct assumptions; one editor maintains `working.md`, separate from the canonical plan, with a baseline, current steering, hardened proposal, and ranked `VERIFIED / PARTIAL / UNVERIFIED / RESOLVED` ledger. Require evidence and how-to-close for each item. Save an immutable revision and event before replacing the living document. Findings choose the next round's targets; do not pre-script a flat sweep. Distinguish build blockers from pre-ship gates. Close with the settled proposal, ranked residuals, proposed canonical edits, ordered build checklist, and corrected assumptions. Apply canonical edits only within the user's task authorization.
 
@@ -182,6 +188,8 @@ A warm receiver gets nothing it already holds except the open requests it owns: 
 Record `schedule_exhausted` after the exact planned turns; completion is a separate acceptance decision. At the end, reconcile open board requests, validate the task's actual acceptance criteria, and write `final.md` with the result, evidence, unresolved items, and owners. Record `run_completed`, `run_failed`, or `run_cancelled` truthfully. Report the run directory, attach command, and remaining blockers. Preserve logs and sessions according to the user's requested lifecycle.
 
 ## Changes since 0.2.0
+
+0.4.1 expands skill discovery metadata in `SKILL.md`, `agents/openai.yaml`, and `skill.json` for `team(`, `p(`, and `parallel(` schedules, multi-agent git worktree coordination, and Agent Skills hosts, and links the canonical language and repository references. Language syntax and coordination behavior are unchanged.
 
 0.4.0 adds `team(` as the long form of `t(`, and parallel groups: `p(...)`, long form `parallel(...)`, runs its members at once, blind to each other until it joins, with steps for counting and numbering, and a human member's no stops the work after it. Every 0.3.1 expression keeps its tree, counts and schedule; `team`, `p` and `parallel` stay model names unless an opening parenthesis follows.
 
